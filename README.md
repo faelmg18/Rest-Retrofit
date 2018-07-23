@@ -20,9 +20,10 @@ Intalação
 Maven
 ```xml
 <dependency>
-  <groupId>com.squareup.retrofit2</groupId>
-  <artifactId>retrofit</artifactId>
-  <version>2.4.0</version>
+  <groupId>com.github.faelmg18</groupId>
+  <artifactId>rhf-rest-retrofit</artifactId>
+  <version>0.0.2</version>
+  <type>aar</type>
 </dependency>
 ```
 ou Gradle:
