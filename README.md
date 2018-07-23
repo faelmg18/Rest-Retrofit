@@ -34,9 +34,8 @@ implementation 'com.github.faelmg18:rhf-rest-retrofit:0.0.2'
 
 ## Uso da Lib Rest-Retrofit
 
-```Java
 Crie a interface de comunicação
-  
+```Java
   public interface RepositoryInterface {
             @GET("search/repositories")
             Call<GitRepositories> doGetListRepositoriesModel(@Query("q") String language,
