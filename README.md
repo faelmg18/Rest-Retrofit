@@ -15,7 +15,7 @@ Um cliente HTTP e HTTP / 2 para aplicativos Android e Java
 ### Pré-requisitos
 * Retrofit requires at minimum Java 7 or Android 2.3.
 
-Intalação
+Instalação
 --------
 * Maven
 ```xml
