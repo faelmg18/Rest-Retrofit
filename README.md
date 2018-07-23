@@ -27,7 +27,7 @@ Instalação
 </dependency>
 ```
 * Gradle:
-```groovy
+```Gradle
 implementation 'com.github.faelmg18:rhf-rest-retrofit:0.0.2'
 ```
 ### Vamos fazer uma chamada da API do Git para buscar repositorios mais usados.
