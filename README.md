@@ -30,6 +30,7 @@ ou Gradle:
 ```groovy
 implementation 'com.github.faelmg18:rhf-rest-retrofit:0.0.2'
 ```
+### Vamos fazer uma chamada da API do Git para buscar repositorios mais usados.
 
 ## Uso da Lib Rest-Retrofit
 
