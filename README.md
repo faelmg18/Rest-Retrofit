@@ -33,7 +33,7 @@ implementation 'com.github.faelmg18:rhf-rest-retrofit:0.0.2'
 
 ## Uso da Lib Rest-Retrofit
 
-```
+```Java
 Crie a interface de comunicação
   
   public interface RepositoryInterface {
@@ -48,7 +48,7 @@ Crie a interface de comunicação
 ## BaseApiCliente - Classe que herdará da nossa lib para fazer a ligação com a Lib Retrofit
 Agora crie uma classe que irá herdar de AbstractAPIClient, o parâmentro T deverá ser a interface criada para fazer a comunicação com a lib da Retrofit
 
-```
+```Java
 public class BaseApiCliente<T> extends AbstractAPIClient<T> {
 
             private ProgressDialog dialog;
@@ -78,7 +78,7 @@ public class BaseApiCliente<T> extends AbstractAPIClient<T> {
 ## Classe de serviços
  Crie sua classe de serviços que ira herdar de BaseApiClient como no exemplo! OBS: essa classe "BaseApiCliente" poderá ser uma classe do seu gosto
  
-```
+```Java
 public class RepositoryService extends BaseApiCliente<RepositoryInterface> {
 
     private static final String REPOSITORIES_LANGUAGE = "language:Java";
@@ -112,7 +112,7 @@ public class RepositoryService extends BaseApiCliente<RepositoryInterface> {
 
 Em sua activity crie uma instancia que faça a chamada da APi
 
-```
+```Java
 public class MainActivity extends AppCompatActivity implements RHFViewInterface {
 
     ListView listView;
