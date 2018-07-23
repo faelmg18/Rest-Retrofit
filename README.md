@@ -17,7 +17,7 @@ Um cliente HTTP e HTTP / 2 para aplicativos Android e Java
 
 Intalação
 --------
-Maven
+* Maven
 ```xml
 <dependency>
   <groupId>com.github.faelmg18</groupId>
@@ -26,7 +26,7 @@ Maven
   <type>aar</type>
 </dependency>
 ```
-ou Gradle:
+* Gradle:
 ```groovy
 implementation 'com.github.faelmg18:rhf-rest-retrofit:0.0.2'
 ```
