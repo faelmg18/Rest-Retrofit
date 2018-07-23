@@ -15,12 +15,25 @@ Um cliente HTTP e HTTP / 2 para aplicativos Android e Java
 ### Pré-requisitos
 * Retrofit requires at minimum Java 7 or Android 2.3.
 
+Intalação
+--------
+Maven
+```xml
+<dependency>
+  <groupId>com.squareup.retrofit2</groupId>
+  <artifactId>retrofit</artifactId>
+  <version>2.4.0</version>
+</dependency>
+```
+ou Gradle:
+```groovy
+implementation 'com.github.faelmg18:rhf-rest-retrofit:0.0.2'
+```
+
 ## Uso da Lib Rest-Retrofit
 
 ```
-
-
-### Crie a interface de comunicação
+Crie a interface de comunicação
   
   public interface RepositoryInterface {
             @GET("search/repositories")
