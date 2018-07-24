@@ -65,35 +65,35 @@ public class DataSerializer {
         }
     }
 
-    public <T> T toObject(String json, Class targetClass) {
+    public <F> F toObject(String json, Class targetClass) {
         try {
-            return (T) objectMapper.readValue(json, targetClass);
+            return (F) objectMapper.readValue(json, targetClass);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public <T> T toObject(String json, final TypeReference<T> type) {
+    public <F> F toObject(String json, final TypeReference<F> type) {
         try {
-            return (T) objectMapper.readValue(json, type);
+            return (F) objectMapper.readValue(json, type);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public <T> List<T> toObject(String jsonAnswer, CollectionType collectionType) {
+    public <F> List<F> toObject(String jsonAnswer, CollectionType collectionType) {
 
         try {
-            return (List<T>) objectMapper.readValue(jsonAnswer, collectionType);
+            return (List<F>) objectMapper.readValue(jsonAnswer, collectionType);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
     }
 
-    public <T> List<T> toObjectList(String jsonAnswer, Class<T> targetClass) {
+    public <F> List<F> toObjectList(String jsonAnswer, Class<F> targetClass) {
         try {
-            return (List<T>) objectMapper.readValue(jsonAnswer, TypeFactory.defaultInstance().constructCollectionType(List.class,
+            return (List<F>) objectMapper.readValue(jsonAnswer, TypeFactory.defaultInstance().constructCollectionType(List.class,
                     targetClass));
 
         } catch (Exception e) {
@@ -101,9 +101,9 @@ public class DataSerializer {
         }
     }
 
-    public <T> ArrayList<T> toObjectArrayList(String jsonAnswer, Class<T> targetClass) {
+    public <F> ArrayList<F> toObjectArrayList(String jsonAnswer, Class<F> targetClass) {
         try {
-            return (ArrayList<T>) objectMapper.readValue(jsonAnswer, TypeFactory.defaultInstance().constructCollectionType(List.class,
+            return (ArrayList<F>) objectMapper.readValue(jsonAnswer, TypeFactory.defaultInstance().constructCollectionType(List.class,
                     targetClass));
 
         } catch (Exception e) {

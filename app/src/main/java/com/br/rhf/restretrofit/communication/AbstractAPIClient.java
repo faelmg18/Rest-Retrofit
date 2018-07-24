@@ -1,7 +1,6 @@
 package com.br.rhf.restretrofit.communication;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.br.rhf.restretrofit.communication.dataserializer.DataSerializer;
@@ -12,10 +11,12 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -120,7 +121,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 // @author Rafael Henrique Fernandes (faelmg18@gmail.com)
 //
 
-public abstract class AbstractAPIClient<T> {
+public abstract class AbstractAPIClient<I> {
 
     private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
     private static volatile Retrofit retrofit = null;
@@ -131,7 +132,7 @@ public abstract class AbstractAPIClient<T> {
 
     protected abstract String getBaseUrl();
 
-    private T mInterface;
+    private I mInterface;
 
     private WeakReference<RHFViewInterface> viewInterfaceWeakReference;
     private Gson gson;
@@ -163,10 +164,9 @@ public abstract class AbstractAPIClient<T> {
 
         Type type = getClass().getGenericSuperclass();
         Type t = ((ParameterizedType) type).getActualTypeArguments()[0];
-        createInterface((Class<T>) t);
+        createInterface((Class<I>) t);
     }
 
-    @NonNull
     private Retrofit builder(OkHttpClient client, Converter.Factory factory) {
         return new Retrofit.Builder()
                 .baseUrl(getBaseUrl())
@@ -179,26 +179,23 @@ public abstract class AbstractAPIClient<T> {
         return getGsonConverterFactory(gson);
     }
 
-    @NonNull
     private Converter.Factory getGsonConverterFactory(Gson gson) {
         return GsonConverterFactory.create(gson);
     }
 
-    @NonNull
     private Gson getGson() {
         return new GsonBuilder().setDateFormat(getPattern()).create();
     }
 
-    @NonNull
     private String getPattern() {
         return DEFAULT_DATE_FORMAT;
     }
 
-    private void createInterface(Class<T> tClass) {
+    private void createInterface(Class<I> tClass) {
         mInterface = retrofit.create(tClass);
     }
 
-    public T getInterface() {
+    public I getInterface() {
         return mInterface;
     }
 
@@ -208,7 +205,6 @@ public abstract class AbstractAPIClient<T> {
                 .readTimeout(30, TimeUnit.SECONDS);
     }
 
-    @NonNull
     protected HttpLoggingInterceptor getHttpLoggingInterceptor() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
@@ -296,6 +292,22 @@ public abstract class AbstractAPIClient<T> {
     protected <T> void createBody(T obj, BodyCreatedListener callListener, MediaType mediaType) {
         String json = DataSerializer.getInstance().toJson(obj);
         createBody(json, callListener, mediaType);
+    }
+
+    protected RequestBody createBody(HashMap<String, String> map, MediaType type) {
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        builder.setType(type);
+
+        for (String key : map.keySet()) {
+            builder.addFormDataPart(key, map.get(key));
+        }
+
+        RequestBody requestBody = builder.build();
+        return requestBody;
+    }
+
+    protected RequestBody createBody(HashMap<String, String> map) {
+        return createBody(map, MultipartBody.FORM);
     }
 
     protected Activity getActivity() {
