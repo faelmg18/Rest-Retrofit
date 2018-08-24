@@ -22,7 +22,7 @@ Instalação
 <dependency>
   <groupId>com.github.faelmg18</groupId>
   <artifactId>rhf-rest-retrofit</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
   <type>aar</type>
 </dependency>
 ```
